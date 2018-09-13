@@ -14,6 +14,15 @@ MAX_SALARY = {
     'FanDuel': 60000,
 }
 
+FANDUEL_ADJUSTER = {
+    'QB': .9,
+    'RB': 1.1,
+    'WR': 1.26,
+    'TE': 1.38,
+    'FLEX': 1.1,
+    'DEFS': 1.15,
+}
+
 def main(argv):
     """
     Write the Projected best lineup
@@ -187,12 +196,12 @@ def get_new_lineup_indexes(lineup_indexes, comparator):
 
     least_valuable_position = 'QB'
     for key, value in least_valuable_indexes.items():
-        if value['value'] < least_valuable_indexes[least_valuable_position]['value']:
-            if SITE != 'FanDuel' or key != 'TE': 
-                least_valuable_position = key
+        if value['value'] < least_valuable_indexes[least_valuable_position]['value'] and SITE != 'FanDuel':
+            least_valuable_position = key
+        elif value['value'] * FANDUEL_ADJUSTER[key] < \
+            least_valuable_indexes[least_valuable_position]['value'] * FANDUEL_ADJUSTER[least_valuable_position]:
 
-            if SITE == 'FanDuel' and key == 'TE' and (value['value']+.2) < least_valuable_indexes[least_valuable_position]['value']:
-                least_valuable_position = key
+            least_valuable_position = key
 
     lineup_indexes[least_valuable_position].remove(\
         least_valuable_indexes[least_valuable_position]['index']\
