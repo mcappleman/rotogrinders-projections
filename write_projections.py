@@ -58,7 +58,7 @@ def main(argv):
     wr_url = './static/csv/' + SITE + '/nfl-wr.csv'
     te_url = './static/csv/' + SITE + '/nfl-te.csv'
     d_url = './static/csv/' + SITE + '/nfl-defense.csv'
-    sort = ['floor', 'salary']
+    sort = ['points', 'salary']
 
     QBS = pandas.read_csv(qb_url, names=names)\
         .sort_values(by=sort, ascending=False)\
