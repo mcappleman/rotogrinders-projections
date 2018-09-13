@@ -58,20 +58,22 @@ def main(argv):
     wr_url = './static/csv/' + SITE + '/nfl-wr.csv'
     te_url = './static/csv/' + SITE + '/nfl-te.csv'
     d_url = './static/csv/' + SITE + '/nfl-defense.csv'
+    sort = ['ceiling', 'salary']
+
     QBS = pandas.read_csv(qb_url, names=names)\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
     RBS = pandas.read_csv(rb_url, names=names)\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
     WRS = pandas.read_csv(wr_url, names=names)\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
     TES = pandas.read_csv(te_url, names=names)\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
     DEFS = pandas.read_csv(d_url, names=names)\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
 
     QBS = add_point_per_dollar(QBS)
