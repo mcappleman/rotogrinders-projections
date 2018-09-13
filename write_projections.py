@@ -5,6 +5,7 @@ Create Optimal Lineup
 import sys
 import getopt
 import pandas
+import json
 
 QBS, RBS, WRS, TES, FLEX, DEFS = (pandas.DataFrame() for i in range(6))
 SITE = ''
@@ -20,8 +21,10 @@ def main(argv):
 
     global QBS, RBS, WRS, TES, FLEX, DEFS, SITE
 
+    output_file_name = ''
+
     try:
-        opts, args = getopt.getopt(argv, "hs:", ["site="])
+        opts, args = getopt.getopt(argv, "hs:o:", ["site="])
     except getopt.GetoptError:
         print('write-projections.py -s <Site | DraftKings or FanDuel>')
         sys.exit(2)
@@ -32,6 +35,8 @@ def main(argv):
             sys.exit(1)
         elif opt == '-s':
             SITE = arg
+        elif opt == '-o':
+            output_file_name = arg
 
     # Load dataset
     names = [
@@ -86,8 +91,9 @@ def main(argv):
     lineups['c_lineup'] = create_lineup(lineup_indexes, 'ceiling_per_salary')
     lineup_indexes = reset()
     lineups['f_lineup'] = create_lineup(lineup_indexes, 'floor_per_salary')
-    print(lineups)
 
+    with open('./static/json/' + SITE + '/' + output_file_name + '.json', 'w') as fp:
+        json.dump(lineups, fp)
 
 def reset():
     """
@@ -122,13 +128,13 @@ def get_position(player_list, index):
     """
     return {
         'name': player_list['name'][index],
-        'salary': player_list['salary'][index],
+        'salary': player_list['salary'][index].item(),
         'points': player_list['points'][index],
         'ceiling': player_list['ceiling'][index],
         'floor': player_list['floor'][index],
-        'points_per_salary': player_list['points_per_salary'][index],
-        'ceiling_per_salary': player_list['ceiling_per_salary'][index],
-        'floor_per_salary': player_list['floor_per_salary'][index],
+        'points_per_salary': player_list['points_per_salary'][index].item(),
+        'ceiling_per_salary': player_list['ceiling_per_salary'][index].item(),
+        'floor_per_salary': player_list['floor_per_salary'][index].item(),
     }
 
 
@@ -138,7 +144,6 @@ def get_least(player_list, indexes, comparator):
     """
     least_valuable_index = indexes[0]
     for i in indexes:
-        print(comparator)
         if player_list[comparator][i] < player_list[comparator][least_valuable_index]:
             least_valuable_index = i
 
@@ -181,7 +186,11 @@ def get_new_lineup_indexes(lineup_indexes, comparator):
     least_valuable_position = 'QB'
     for key, value in least_valuable_indexes.items():
         if value['value'] < least_valuable_indexes[least_valuable_position]['value']:
-            least_valuable_position = key
+            if SITE != 'FanDuel' or key != 'TE': 
+                least_valuable_position = key
+
+            if SITE == 'FanDuel' and key == 'TE' and (value['value']+.2) < least_valuable_indexes[least_valuable_position]['value']:
+                least_valuable_position = key
 
     lineup_indexes[least_valuable_position].remove(\
         least_valuable_indexes[least_valuable_position]['index']\
@@ -218,6 +227,9 @@ def create_lineup(lineup_indexes, comparator):
     """
     Create a valid lineup
     """
+    # print(lineup_indexes)
+    # print(TES['name'][lineup_indexes['TE'][0]] + ', ' + str(TES['points'][lineup_indexes['TE'][0]]) + ', ' + str(TES['points_per_salary'][lineup_indexes['TE'][0]]))
+    # print()
     lineup = {
         'qb': get_position(QBS, lineup_indexes['QB'][0]),
         'rb1': get_position(RBS, lineup_indexes['RB'][0]),
