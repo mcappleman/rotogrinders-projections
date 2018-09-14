@@ -14,15 +14,6 @@ MAX_SALARY = {
     'FanDuel': 60000,
 }
 
-FANDUEL_ADJUSTER = {
-    'QB': .9,
-    'RB': 1.1,
-    'WR': 1.26,
-    'TE': 1.38,
-    'FLEX': 1.1,
-    'DEFS': 1.15,
-}
-
 def main(argv):
     """
     Write the Projected best lineup
@@ -30,10 +21,10 @@ def main(argv):
 
     global QBS, RBS, WRS, TES, FLEX, DEFS, SITE
 
-    output_file_name = ''
+    output_file_name, ending = '', ''
 
     try:
-        opts, args = getopt.getopt(argv, "hs:o:", ["site="])
+        opts, args = getopt.getopt(argv, "hs:e:o:", ["site="])
     except getopt.GetoptError:
         print('write-projections.py -s <Site | DraftKings or FanDuel>')
         sys.exit(2)
@@ -44,6 +35,8 @@ def main(argv):
             sys.exit(1)
         elif opt == '-s':
             SITE = arg
+        elif opt == '-e':
+            ending = arg
         elif opt == '-o':
             output_file_name = arg
 
@@ -64,19 +57,19 @@ def main(argv):
 
     sort = ['points', 'salary']
 
-    QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb.csv', names=names)\
+    QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    RBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-rb.csv', names=names)\
+    RBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-rb' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    WRS = pandas.read_csv('./static/csv/' + SITE + '/nfl-wr.csv', names=names)\
+    WRS = pandas.read_csv('./static/csv/' + SITE + '/nfl-wr' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    TES = pandas.read_csv('./static/csv/' + SITE + '/nfl-te.csv', names=names)\
+    TES = pandas.read_csv('./static/csv/' + SITE + '/nfl-te' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    DEFS = pandas.read_csv('./static/csv/' + SITE + '/nfl-defense.csv', names=names)\
+    DEFS = pandas.read_csv('./static/csv/' + SITE + '/nfl-defense' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
 
@@ -87,7 +80,7 @@ def main(argv):
     DEFS = add_point_per_dollar(DEFS)
 
     FLEX = FLEX.append([RBS, WRS, TES])\
-        .sort_values(by=['ceiling', 'salary'], ascending=False)\
+        .sort_values(by=sort, ascending=False)\
         .reset_index()
 
     lineups = {}
@@ -97,8 +90,8 @@ def main(argv):
     lineups['c_lineup'] = create_lineup(lineup_indexes, 'ceiling_per_salary')
     lineup_indexes = reset()
     lineups['f_lineup'] = create_lineup(lineup_indexes, 'floor_per_salary')
-    lineup_indexes = reset()
-    lineups['points_lineup'] = create_lineup(lineup_indexes, 'points')
+    # lineup_indexes = reset()
+    # lineups['points_lineup'] = create_lineup(lineup_indexes, 'points')
 
     with open('./static/json/' + SITE + '/' + output_file_name + '.json', 'w') as file_printer:
         json.dump(lineups, file_printer)
