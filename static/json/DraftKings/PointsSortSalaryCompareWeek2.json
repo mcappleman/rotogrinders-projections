@@ -1,0 +1,386 @@
+{
+    "p_lineup": {
+        "qb": {
+            "name": "Ben Roethlisberger",
+            "salary": 6900,
+            "points": 22.55,
+            "ceiling": 34.7721,
+            "floor": 10.4632,
+            "points_per_salary": 3.2681159420289854,
+            "ceiling_per_salary": 5.039434782608695,
+            "floor_per_salary": 1.5164057971014493
+        },
+        "rb1": {
+            "name": "Melvin Gordon",
+            "salary": 7400,
+            "points": 21.18,
+            "ceiling": 35.243520000000004,
+            "floor": 11.649000000000001,
+            "points_per_salary": 2.862162162162162,
+            "ceiling_per_salary": 4.762637837837838,
+            "floor_per_salary": 1.5741891891891893
+        },
+        "rb2": {
+            "name": "Saquon Barkley",
+            "salary": 7300,
+            "points": 20.46,
+            "ceiling": 40.89954,
+            "floor": 13.892339999999999,
+            "points_per_salary": 2.802739726027397,
+            "ceiling_per_salary": 5.602676712328767,
+            "floor_per_salary": 1.9030602739726026
+        },
+        "wr1": {
+            "name": "Julio Jones",
+            "salary": 8400,
+            "points": 23.95,
+            "ceiling": 44.85835,
+            "floor": 16.93265,
+            "points_per_salary": 2.8511904761904763,
+            "ceiling_per_salary": 5.340279761904762,
+            "floor_per_salary": 2.0157916666666664
+        },
+        "wr2": {
+            "name": "Devin Funchess",
+            "salary": 4700,
+            "points": 13.51,
+            "ceiling": 27.006490000000003,
+            "floor": 12.51026,
+            "points_per_salary": 2.874468085106383,
+            "ceiling_per_salary": 5.74606170212766,
+            "floor_per_salary": 2.661757446808511
+        },
+        "wr3": {
+            "name": "Mohamed Sanu",
+            "salary": 4000,
+            "points": 13.23,
+            "ceiling": 26.44677,
+            "floor": 10.755989999999999,
+            "points_per_salary": 3.3075,
+            "ceiling_per_salary": 6.6116925,
+            "floor_per_salary": 2.6889974999999997
+        },
+        "te": {
+            "name": "Jared Cook",
+            "salary": 3600,
+            "points": 11.43,
+            "ceiling": 22.848570000000002,
+            "floor": 9.54405,
+            "points_per_salary": 3.175,
+            "ceiling_per_salary": 6.346825000000001,
+            "floor_per_salary": 2.6511250000000004
+        },
+        "flex": {
+            "name": "Chris Carson",
+            "salary": 4100,
+            "points": 13.25,
+            "ceiling": 25.546,
+            "floor": 9.63275,
+            "points_per_salary": 3.231707317073171,
+            "ceiling_per_salary": 6.230731707317073,
+            "floor_per_salary": 2.3494512195121953
+        },
+        "defs": {
+            "name": "Pittsburgh Steelers",
+            "salary": 2700,
+            "points": 7.74,
+            "ceiling": 14.698260000000001,
+            "floor": 6.81894,
+            "points_per_salary": 2.8666666666666667,
+            "ceiling_per_salary": 5.4438,
+            "floor_per_salary": 2.525533333333333
+        },
+        "cost": 49100,
+        "total_points": 147.3,
+        "ceiling": 272.31960000000004,
+        "floor": 102.19918
+    },
+    "c_lineup": {
+        "qb": {
+            "name": "Russell Wilson",
+            "salary": 6000,
+            "points": 20.47,
+            "ceiling": 31.5238,
+            "floor": 10.33735,
+            "points_per_salary": 3.4116666666666666,
+            "ceiling_per_salary": 5.253966666666667,
+            "floor_per_salary": 1.7228916666666667
+        },
+        "rb1": {
+            "name": "Saquon Barkley",
+            "salary": 7300,
+            "points": 20.46,
+            "ceiling": 40.89954,
+            "floor": 13.892339999999999,
+            "points_per_salary": 2.802739726027397,
+            "ceiling_per_salary": 5.602676712328767,
+            "floor_per_salary": 1.9030602739726026
+        },
+        "rb2": {
+            "name": "Chris Carson",
+            "salary": 4100,
+            "points": 13.25,
+            "ceiling": 25.546,
+            "floor": 9.63275,
+            "points_per_salary": 3.231707317073171,
+            "ceiling_per_salary": 6.230731707317073,
+            "floor_per_salary": 2.3494512195121953
+        },
+        "wr1": {
+            "name": "Julio Jones",
+            "salary": 8400,
+            "points": 23.95,
+            "ceiling": 44.85835,
+            "floor": 16.93265,
+            "points_per_salary": 2.8511904761904763,
+            "ceiling_per_salary": 5.340279761904762,
+            "floor_per_salary": 2.0157916666666664
+        },
+        "wr2": {
+            "name": "Adam Thielen",
+            "salary": 7100,
+            "points": 19.41,
+            "ceiling": 38.72295,
+            "floor": 13.89756,
+            "points_per_salary": 2.7338028169014086,
+            "ceiling_per_salary": 5.453936619718309,
+            "floor_per_salary": 1.9574028169014084
+        },
+        "wr3": {
+            "name": "Devin Funchess",
+            "salary": 4700,
+            "points": 13.51,
+            "ceiling": 27.006490000000003,
+            "floor": 12.51026,
+            "points_per_salary": 2.874468085106383,
+            "ceiling_per_salary": 5.74606170212766,
+            "floor_per_salary": 2.661757446808511
+        },
+        "te": {
+            "name": "Jared Cook",
+            "salary": 3600,
+            "points": 11.43,
+            "ceiling": 22.848570000000002,
+            "floor": 9.54405,
+            "points_per_salary": 3.175,
+            "ceiling_per_salary": 6.346825000000001,
+            "floor_per_salary": 2.6511250000000004
+        },
+        "flex": {
+            "name": "Devonta Freeman",
+            "salary": 6000,
+            "points": 15.74,
+            "ceiling": 27.10428,
+            "floor": 11.42724,
+            "points_per_salary": 2.6233333333333335,
+            "ceiling_per_salary": 4.51738,
+            "floor_per_salary": 1.90454
+        },
+        "defs": {
+            "name": "Pittsburgh Steelers",
+            "salary": 2700,
+            "points": 7.74,
+            "ceiling": 14.698260000000001,
+            "floor": 6.81894,
+            "points_per_salary": 2.8666666666666667,
+            "ceiling_per_salary": 5.4438,
+            "floor_per_salary": 2.525533333333333
+        },
+        "cost": 49900,
+        "total_points": 145.96,
+        "ceiling": 273.20824,
+        "floor": 104.99314
+    },
+    "f_lineup": {
+        "qb": {
+            "name": "Mitchell Trubisky",
+            "salary": 5200,
+            "points": 18.17,
+            "ceiling": 29.50808,
+            "floor": 10.10252,
+            "points_per_salary": 3.4942307692307693,
+            "ceiling_per_salary": 5.6746307692307685,
+            "floor_per_salary": 1.9427923076923077
+        },
+        "rb1": {
+            "name": "Chris Carson",
+            "salary": 4100,
+            "points": 13.25,
+            "ceiling": 25.546,
+            "floor": 9.63275,
+            "points_per_salary": 3.231707317073171,
+            "ceiling_per_salary": 6.230731707317073,
+            "floor_per_salary": 2.3494512195121953
+        },
+        "rb2": {
+            "name": "Rex Burkhead",
+            "salary": 4400,
+            "points": 12.47,
+            "ceiling": 23.85511,
+            "floor": 8.84123,
+            "points_per_salary": 2.834090909090909,
+            "ceiling_per_salary": 5.421615909090909,
+            "floor_per_salary": 2.0093704545454543
+        },
+        "wr1": {
+            "name": "Julio Jones",
+            "salary": 8400,
+            "points": 23.95,
+            "ceiling": 44.85835,
+            "floor": 16.93265,
+            "points_per_salary": 2.8511904761904763,
+            "ceiling_per_salary": 5.340279761904762,
+            "floor_per_salary": 2.0157916666666664
+        },
+        "wr2": {
+            "name": "Adam Thielen",
+            "salary": 7100,
+            "points": 19.41,
+            "ceiling": 38.72295,
+            "floor": 13.89756,
+            "points_per_salary": 2.7338028169014086,
+            "ceiling_per_salary": 5.453936619718309,
+            "floor_per_salary": 1.9574028169014084
+        },
+        "wr3": {
+            "name": "Golden Tate",
+            "salary": 6500,
+            "points": 16.61,
+            "ceiling": 32.24001,
+            "floor": 13.354439999999999,
+            "points_per_salary": 2.5553846153846154,
+            "ceiling_per_salary": 4.960001538461539,
+            "floor_per_salary": 2.0545292307692304
+        },
+        "te": {
+            "name": "Jared Cook",
+            "salary": 3600,
+            "points": 11.43,
+            "ceiling": 22.848570000000002,
+            "floor": 9.54405,
+            "points_per_salary": 3.175,
+            "ceiling_per_salary": 6.346825000000001,
+            "floor_per_salary": 2.6511250000000004
+        },
+        "flex": {
+            "name": "Juju Smith-Schuster",
+            "salary": 6400,
+            "points": 15.74,
+            "ceiling": 30.96058,
+            "floor": 12.450339999999999,
+            "points_per_salary": 2.459375,
+            "ceiling_per_salary": 4.837590625000001,
+            "floor_per_salary": 1.9453656249999998
+        },
+        "defs": {
+            "name": "Los Angeles Chargers",
+            "salary": 3600,
+            "points": 9.7,
+            "ceiling": 11.64,
+            "floor": 7.76,
+            "points_per_salary": 2.6944444444444446,
+            "ceiling_per_salary": 3.2333333333333334,
+            "floor_per_salary": 2.1555555555555554
+        },
+        "cost": 49300,
+        "total_points": 140.73,
+        "ceiling": 260.17965,
+        "floor": 102.51554
+    },
+    "salary_lineup": {
+        "qb": {
+            "name": "Joe Flacco",
+            "salary": 5200,
+            "points": 15.53,
+            "ceiling": 25.67109,
+            "floor": 8.61915,
+            "points_per_salary": 2.9865384615384616,
+            "ceiling_per_salary": 4.936748076923077,
+            "floor_per_salary": 1.657528846153846
+        },
+        "rb1": {
+            "name": "Alvin Kamara",
+            "salary": 9500,
+            "points": 24.76,
+            "ceiling": 41.05208,
+            "floor": 15.475,
+            "points_per_salary": 2.606315789473684,
+            "ceiling_per_salary": 4.321271578947368,
+            "floor_per_salary": 1.6289473684210527
+        },
+        "rb2": {
+            "name": "Devonta Freeman",
+            "salary": 6000,
+            "points": 15.74,
+            "ceiling": 27.10428,
+            "floor": 11.42724,
+            "points_per_salary": 2.6233333333333335,
+            "ceiling_per_salary": 4.51738,
+            "floor_per_salary": 1.90454
+        },
+        "wr1": {
+            "name": "Antonio Brown",
+            "salary": 8800,
+            "points": 22.84,
+            "ceiling": 39.6274,
+            "floor": 15.1886,
+            "points_per_salary": 2.5954545454545452,
+            "ceiling_per_salary": 4.503113636363636,
+            "floor_per_salary": 1.7259772727272726
+        },
+        "wr2": {
+            "name": "Michael Thomas",
+            "salary": 8600,
+            "points": 18.5,
+            "ceiling": 35.3165,
+            "floor": 13.542,
+            "points_per_salary": 2.1511627906976742,
+            "ceiling_per_salary": 4.106569767441861,
+            "floor_per_salary": 1.5746511627906976
+        },
+        "wr3": {
+            "name": "Trey Quinn",
+            "salary": 3000,
+            "points": 1.63,
+            "ceiling": 3.25837,
+            "floor": 1.63,
+            "points_per_salary": 0.5433333333333333,
+            "ceiling_per_salary": 1.0861233333333336,
+            "floor_per_salary": 0.5433333333333333
+        },
+        "te": {
+            "name": "Hakeem Valles",
+            "salary": 2700,
+            "points": 1.78,
+            "ceiling": 3.5582199999999995,
+            "floor": 1.78,
+            "points_per_salary": 0.6592592592592592,
+            "ceiling_per_salary": 1.317859259259259,
+            "floor_per_salary": 0.6592592592592592
+        },
+        "flex": {
+            "name": "Tre Madden",
+            "salary": 3000,
+            "points": 1.1,
+            "ceiling": 2.1989,
+            "floor": 1.1,
+            "points_per_salary": 0.36666666666666664,
+            "ceiling_per_salary": 0.7329666666666667,
+            "floor_per_salary": 0.36666666666666664
+        },
+        "defs": {
+            "name": "Carolina Panthers",
+            "salary": 2900,
+            "points": 6.39,
+            "ceiling": 12.43494,
+            "floor": 5.56569,
+            "points_per_salary": 2.203448275862069,
+            "ceiling_per_salary": 4.287910344827586,
+            "floor_per_salary": 1.919203448275862
+        },
+        "cost": 49700,
+        "total_points": 108.27,
+        "ceiling": 190.22178000000002,
+        "floor": 74.32767999999999
+    }
+}

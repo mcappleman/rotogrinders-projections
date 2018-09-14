@@ -4,8 +4,8 @@ Create Optimal Lineup
 
 import sys
 import getopt
-import pandas
 import json
+import pandas
 
 QBS, RBS, WRS, TES, FLEX, DEFS = (pandas.DataFrame() for i in range(6))
 SITE = ''
@@ -62,26 +62,21 @@ def main(argv):
         'points_per_salary',
     ]
 
-    qb_url = './static/csv/' + SITE + '/nfl-qb.csv'
-    rb_url = './static/csv/' + SITE + '/nfl-rb.csv'
-    wr_url = './static/csv/' + SITE + '/nfl-wr.csv'
-    te_url = './static/csv/' + SITE + '/nfl-te.csv'
-    d_url = './static/csv/' + SITE + '/nfl-defense.csv'
     sort = ['points', 'salary']
 
-    QBS = pandas.read_csv(qb_url, names=names)\
+    QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    RBS = pandas.read_csv(rb_url, names=names)\
+    RBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-rb.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    WRS = pandas.read_csv(wr_url, names=names)\
+    WRS = pandas.read_csv('./static/csv/' + SITE + '/nfl-wr.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    TES = pandas.read_csv(te_url, names=names)\
+    TES = pandas.read_csv('./static/csv/' + SITE + '/nfl-te.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    DEFS = pandas.read_csv(d_url, names=names)\
+    DEFS = pandas.read_csv('./static/csv/' + SITE + '/nfl-defense.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
 
@@ -92,7 +87,7 @@ def main(argv):
     DEFS = add_point_per_dollar(DEFS)
 
     FLEX = FLEX.append([RBS, WRS, TES])\
-        .sort_values(by=['points', 'salary'], ascending=False)\
+        .sort_values(by=['ceiling', 'salary'], ascending=False)\
         .reset_index()
 
     lineups = {}
@@ -102,9 +97,11 @@ def main(argv):
     lineups['c_lineup'] = create_lineup(lineup_indexes, 'ceiling_per_salary')
     lineup_indexes = reset()
     lineups['f_lineup'] = create_lineup(lineup_indexes, 'floor_per_salary')
+    lineup_indexes = reset()
+    lineups['points_lineup'] = create_lineup(lineup_indexes, 'points')
 
-    with open('./static/json/' + SITE + '/' + output_file_name + '.json', 'w') as fp:
-        json.dump(lineups, fp)
+    with open('./static/json/' + SITE + '/' + output_file_name + '.json', 'w') as file_printer:
+        json.dump(lineups, file_printer)
 
 def reset():
     """
@@ -194,28 +191,98 @@ def get_new_lineup_indexes(lineup_indexes, comparator):
         'DEFS': get_least(DEFS, lineup_indexes['DEFS'], comparator),
     }
 
-    least_valuable_position = 'QB'
-    for key, value in least_valuable_indexes.items():
-        if value['value'] < least_valuable_indexes[least_valuable_position]['value'] and SITE != 'FanDuel':
-            least_valuable_position = key
-        elif value['value'] * FANDUEL_ADJUSTER[key] < \
-            least_valuable_indexes[least_valuable_position]['value'] * FANDUEL_ADJUSTER[least_valuable_position]:
+    max_index = {
+        'QB': len(QBS['name']),
+        'RB': len(RBS['name']),
+        'WR': len(WRS['name']),
+        'TE': len(TES['name']),
+        'FLEX': len(FLEX['name']),
+        'DEFS': len(DEFS['name']),
+    }
 
-            least_valuable_position = key
+    least_valuable_positions = get_least_valuable_positions(least_valuable_indexes)
 
-    lineup_indexes[least_valuable_position].remove(\
-        least_valuable_indexes[least_valuable_position]['index']\
-        )
-    lineup_indexes[least_valuable_position].append(next_player_indexes[least_valuable_position])
+    for value in least_valuable_positions:
+        current_position = value['position']
+        if next_player_indexes[current_position] < max_index[current_position]-1:
+            lineup_indexes[current_position].remove(
+                least_valuable_indexes[current_position]['index']
+            )
+            lineup_indexes[current_position].append(
+                next_player_indexes[current_position]
+            )
+            break
 
     return lineup_indexes
+
+
+def get_least_valuable_positions(least_valuable_indexes):
+    """
+    Return a sorted list of the least valuable positions
+    """
+    least_valuable_positions = [
+        {
+            'position': 'QB',
+            'value': least_valuable_indexes['QB']['value'],
+        },
+        {
+            'position': 'RB',
+            'value': least_valuable_indexes['RB']['value'],
+        },
+        {
+            'position': 'WR',
+            'value': least_valuable_indexes['WR']['value'],
+        },
+        {
+            'position': 'TE',
+            'value': least_valuable_indexes['TE']['value'],
+        },
+        {
+            'position': 'FLEX',
+            'value': least_valuable_indexes['FLEX']['value'],
+        },
+        {
+            'position': 'DEFS',
+            'value': least_valuable_indexes['DEFS']['value'],
+        },
+    ]
+
+    quicksort(least_valuable_positions, 0, len(least_valuable_positions)-1)
+
+    return least_valuable_positions
+
+
+def quicksort(arr, low, high):
+    """
+    Quick Sort algorithm
+    """
+    if low < high:
+        pivot = partition(arr, low, high)
+
+        quicksort(arr, low, pivot-1)
+        quicksort(arr, pivot+1, high)
+
+
+def partition(arr, low, high):
+    """
+    Partition for Quick Sort
+    """
+    pivot = arr[high]['value']
+    i = (low - 1)
+
+    for j in range(low, high):
+        if arr[j]['value'] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1
 
 
 def get_flex_index(lineup_indexes):
     """
     Return the flex index
     """
-
     for i in lineup_indexes['RB']:
         if FLEX['name'][lineup_indexes['FLEX'][0]] == RBS['name'][i]:
             lineup_indexes['FLEX'][0] += 1
@@ -238,9 +305,6 @@ def create_lineup(lineup_indexes, comparator):
     """
     Create a valid lineup
     """
-    # print(lineup_indexes)
-    # print(TES['name'][lineup_indexes['TE'][0]] + ', ' + str(TES['points'][lineup_indexes['TE'][0]]) + ', ' + str(TES['points_per_salary'][lineup_indexes['TE'][0]]))
-    # print()
     lineup = {
         'qb': get_position(QBS, lineup_indexes['QB'][0]),
         'rb1': get_position(RBS, lineup_indexes['RB'][0]),
