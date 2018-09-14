@@ -21,14 +21,14 @@
             "floor_per_salary": 1.523611111111111
         },
         "rb2": {
-            "name": "Melvin Gordon",
-            "salary": 8200,
-            "points": 18.8,
-            "ceiling": 31.2832,
-            "floor": 10.34,
-            "points_per_salary": 2.292682926829268,
-            "ceiling_per_salary": 3.8150243902439027,
-            "floor_per_salary": 1.2609756097560976
+            "name": "Mike Gillislee",
+            "salary": 4600,
+            "points": 6.09,
+            "ceiling": 12.173910000000001,
+            "floor": 5.4749099999999995,
+            "points_per_salary": 1.3239130434782609,
+            "ceiling_per_salary": 2.646502173913044,
+            "floor_per_salary": 1.1901978260869566
         },
         "wr1": {
             "name": "Antonio Brown",
@@ -51,14 +51,14 @@
             "floor_per_salary": 1.4791052631578947
         },
         "wr3": {
-            "name": "Anthony Miller",
-            "salary": 0,
-            "points": 3.21,
-            "ceiling": 6.41679,
-            "floor": 3.21,
-            "points_per_salary": Infinity,
-            "ceiling_per_salary": Infinity,
-            "floor_per_salary": Infinity
+            "name": "Stacy Coley",
+            "salary": 4500,
+            "points": 1.47,
+            "ceiling": 2.93853,
+            "floor": 1.47,
+            "points_per_salary": 0.32666666666666666,
+            "ceiling_per_salary": 0.6530066666666667,
+            "floor_per_salary": 0.32666666666666666
         },
         "te": {
             "name": "Rico Gathers",
@@ -81,19 +81,19 @@
             "floor_per_salary": 1.5733144736842104
         },
         "defs": {
-            "name": "Los Angeles Chargers",
-            "salary": 4400,
-            "points": 9.5,
-            "ceiling": 11.4,
-            "floor": 7.6,
-            "points_per_salary": 2.159090909090909,
-            "ceiling_per_salary": 2.590909090909091,
-            "floor_per_salary": 1.7272727272727273
+            "name": "Carolina Panthers",
+            "salary": 4100,
+            "points": 6.29,
+            "ceiling": 12.24034,
+            "floor": 5.4785900000000005,
+            "points_per_salary": 1.5341463414634147,
+            "ceiling_per_salary": 2.985448780487805,
+            "floor_per_salary": 1.3362414634146342
         },
-        "cost": 59200,
-        "total_points": 127.38,
-        "ceiling": 220.75545999999997,
-        "floor": 82.91399
+        "cost": 59800,
+        "total_points": 109.72,
+        "ceiling": 199.00825,
+        "floor": 74.18749
     },
     "c_lineup": {
         "qb": {
@@ -117,14 +117,14 @@
             "floor_per_salary": 1.523611111111111
         },
         "rb2": {
-            "name": "Melvin Gordon",
-            "salary": 8200,
-            "points": 18.8,
-            "ceiling": 31.2832,
-            "floor": 10.34,
-            "points_per_salary": 2.292682926829268,
-            "ceiling_per_salary": 3.8150243902439027,
-            "floor_per_salary": 1.2609756097560976
+            "name": "Saquon Barkley",
+            "salary": 7600,
+            "points": 17.61,
+            "ceiling": 35.20239,
+            "floor": 11.957189999999999,
+            "points_per_salary": 2.317105263157895,
+            "ceiling_per_salary": 4.631893421052632,
+            "floor_per_salary": 1.5733144736842104
         },
         "wr1": {
             "name": "Adam Thielen",
@@ -147,14 +147,14 @@
             "floor_per_salary": 1.651904
         },
         "wr3": {
-            "name": "Anthony Miller",
-            "salary": 0,
-            "points": 3.21,
-            "ceiling": 6.41679,
-            "floor": 3.21,
-            "points_per_salary": Infinity,
-            "ceiling_per_salary": Infinity,
-            "floor_per_salary": Infinity
+            "name": "Stacy Coley",
+            "salary": 4500,
+            "points": 1.47,
+            "ceiling": 2.93853,
+            "floor": 1.47,
+            "points_per_salary": 0.32666666666666666,
+            "ceiling_per_salary": 0.6530066666666667,
+            "floor_per_salary": 0.32666666666666666
         },
         "te": {
             "name": "Rico Gathers",
@@ -186,10 +186,10 @@
             "ceiling_per_salary": 3.9593088235294123,
             "floor_per_salary": 1.6920882352941176
         },
-        "cost": 55600,
-        "total_points": 117.11999999999999,
-        "ceiling": 209.17403999999996,
-        "floor": 77.13064000000001
+        "cost": 59500,
+        "total_points": 114.18999999999998,
+        "ceiling": 209.61497,
+        "floor": 77.00783
     },
     "f_lineup": {
         "qb": {

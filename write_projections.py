@@ -55,7 +55,7 @@ def main(argv):
         'points_per_salary',
     ]
 
-    sort = ['points', 'salary']
+    sort = ['ceiling', 'salary']
 
     QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
