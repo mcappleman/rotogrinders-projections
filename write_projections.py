@@ -21,10 +21,10 @@ def main(argv):
 
     global QBS, RBS, WRS, TES, FLEX, DEFS, SITE
 
-    output_file_name, ending = '', ''
+    output_file_name, ending, key = '', '', ''
 
     try:
-        opts, args = getopt.getopt(argv, "hs:e:o:", ["site="])
+        opts, args = getopt.getopt(argv, "hs:e:o:k:", ["site="])
     except getopt.GetoptError:
         print('write-projections.py -s <Site | DraftKings or FanDuel>')
         sys.exit(2)
@@ -39,6 +39,8 @@ def main(argv):
             ending = arg
         elif opt == '-o':
             output_file_name = arg
+        elif opt == '-k':
+            key = arg
 
     # Load dataset
     names = [
@@ -50,12 +52,18 @@ def main(argv):
         'ceiling',
         'floor',
         'points',
+        'ffa_ceiling',
+        'ffa_floor',
+        'ffa_points',
         'ceiling_per_salary',
         'floor_per_salary',
         'points_per_salary',
+        'ffa_ceiling_per_salary',
+        'ffa_floor_per_salary',
+        'ffa_points_per_salary',
     ]
 
-    sort = ['ceiling', 'salary']
+    sort = [key, 'salary']
 
     QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', names=names)\
         .sort_values(by=sort, ascending=False)\
@@ -119,6 +127,10 @@ def add_point_per_dollar(dataframe):
     dataframe['ceiling_per_salary'] = (dataframe['ceiling']*1000)/dataframe['salary']
     dataframe['floor_per_salary'] = (dataframe['floor']*1000)/dataframe['salary']
     dataframe['points_per_salary'] = (dataframe['points']*1000)/dataframe['salary']
+    
+    dataframe['ffa_ceiling_per_salary'] = (dataframe['ffa_ceiling']*1000)/dataframe['salary']
+    dataframe['ffa_floor_per_salary'] = (dataframe['ffa_floor']*1000)/dataframe['salary']
+    dataframe['ffa_points_per_salary'] = (dataframe['ffa_points']*1000)/dataframe['salary']
 
     return dataframe
 
@@ -133,9 +145,15 @@ def get_position(player_list, index):
         'points': player_list['points'][index],
         'ceiling': player_list['ceiling'][index],
         'floor': player_list['floor'][index],
+        'ffa_points': player_list['ffa_points'][index],
+        'ffa_ceiling': player_list['ffa_ceiling'][index],
+        'ffa_floor': player_list['ffa_floor'][index],
         'points_per_salary': player_list['points_per_salary'][index].item(),
         'ceiling_per_salary': player_list['ceiling_per_salary'][index].item(),
         'floor_per_salary': player_list['floor_per_salary'][index].item(),
+        'ffa_points_per_salary': player_list['ffa_points_per_salary'][index].item(),
+        'ffa_ceiling_per_salary': player_list['ffa_ceiling_per_salary'][index].item(),
+        'ffa_floor_per_salary': player_list['ffa_floor_per_salary'][index].item(),
     }
 
 
@@ -299,32 +317,43 @@ def create_lineup(lineup_indexes, comparator):
     Create a valid lineup
     """
     lineup = {
-        'qb': get_position(QBS, lineup_indexes['QB'][0]),
-        'rb1': get_position(RBS, lineup_indexes['RB'][0]),
-        'rb2': get_position(RBS, lineup_indexes['RB'][1]),
-        'wr1': get_position(WRS, lineup_indexes['WR'][0]),
-        'wr2': get_position(WRS, lineup_indexes['WR'][1]),
-        'wr3': get_position(WRS, lineup_indexes['WR'][2]),
-        'te': get_position(TES, lineup_indexes['TE'][0]),
-        'flex': get_position(FLEX, lineup_indexes['FLEX'][0]),
-        'defs': get_position(DEFS, lineup_indexes['DEFS'][0]),
+        'players': {
+            'qb': get_position(QBS, lineup_indexes['QB'][0]),
+            'rb1': get_position(RBS, lineup_indexes['RB'][0]),
+            'rb2': get_position(RBS, lineup_indexes['RB'][1]),
+            'wr1': get_position(WRS, lineup_indexes['WR'][0]),
+            'wr2': get_position(WRS, lineup_indexes['WR'][1]),
+            'wr3': get_position(WRS, lineup_indexes['WR'][2]),
+            'te': get_position(TES, lineup_indexes['TE'][0]),
+            'flex': get_position(FLEX, lineup_indexes['FLEX'][0]),
+            'defs': get_position(DEFS, lineup_indexes['DEFS'][0]),
+        }
     }
 
     cost = 0
     total_points = 0
     total_ceiling = 0
     total_floor = 0
+    ffa_total_points = 0
+    ffa_total_ceiling = 0
+    ffa_total_floor = 0
 
-    for key, player in lineup.items():
+    for key, player in lineup['players'].items():
         cost += player['salary']
         total_points += player['points']
         total_ceiling += player['ceiling']
         total_floor += player['floor']
+        ffa_total_points += player['ffa_points']
+        ffa_total_ceiling += player['ffa_ceiling']
+        ffa_total_floor += player['ffa_floor']
 
     lineup['cost'] = cost
     lineup['total_points'] = total_points
     lineup['ceiling'] = total_ceiling
     lineup['floor'] = total_floor
+    lineup['ffa_total_points'] = ffa_total_points
+    lineup['ffa_ceiling'] = ffa_total_ceiling
+    lineup['ffa_floor'] = ffa_total_floor
 
     if lineup['cost'] > MAX_SALARY[SITE]:
         lineup_indexes = get_new_lineup_indexes(lineup_indexes, comparator)
