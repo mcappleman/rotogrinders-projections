@@ -17,3 +17,6 @@ echo "Getting FanDuel by FFA"
 python write_projections.py -s FanDuel -o FFA_PointsSortWeek$1 -k ffa_points
 python write_projections.py -s FanDuel -o FFA_CeilingSortWeek$1 -k ffa_ceiling
 python write_projections.py -s FanDuel -o FFA_FloorSortWeek$1 -k ffa_floor
+
+echo "Writing the Lineup CSV Comparator"
+python write_lineup_csvs.py -w $1

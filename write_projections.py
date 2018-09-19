@@ -1,5 +1,5 @@
 """
-Create Optimal Lineup
+Create Optimal Lineups
 """
 
 import sys
@@ -65,19 +65,19 @@ def main(argv):
 
     sort = [key, 'salary']
 
-    QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', names=names)\
+    QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    RBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-rb' + ending + '.csv', names=names)\
+    RBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-rb' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    WRS = pandas.read_csv('./static/csv/' + SITE + '/nfl-wr' + ending + '.csv', names=names)\
+    WRS = pandas.read_csv('./static/csv/' + SITE + '/nfl-wr' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    TES = pandas.read_csv('./static/csv/' + SITE + '/nfl-te' + ending + '.csv', names=names)\
+    TES = pandas.read_csv('./static/csv/' + SITE + '/nfl-te' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
-    DEFS = pandas.read_csv('./static/csv/' + SITE + '/nfl-defense' + ending + '.csv', names=names)\
+    DEFS = pandas.read_csv('./static/csv/' + SITE + '/nfl-defense' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
 
