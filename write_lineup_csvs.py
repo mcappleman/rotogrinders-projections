@@ -20,9 +20,10 @@ def main(argv):
     """
 
     week = 0
+    ending = ''
 
     try:
-        opts, args = getopt.getopt(argv, "hw:", ["week="])
+        opts, args = getopt.getopt(argv, "hw:e:", ["week="])
     except getopt.GetoptError:
         print('python write_lineup_csvs.py -w <Week>')
         sys.exit(2)
@@ -33,42 +34,48 @@ def main(argv):
             sys.exit(1)
         elif opt == '-w':
             week = arg
+        elif opt == '-e':
+            ending = arg
 
     path = './static/json'
-    populate_LINEUPS(path, week)
+    populate_LINEUPS(path, week, ending)
     csv_path = './static/csv'
-    write_csvs(csv_path)
+    write_csvs(csv_path, week, ending)
 
 
-def populate_LINEUPS(path, week):
+def populate_LINEUPS(path, week, ending):
     """
     Populate LINEUPS global var
     """
     for site in SITES:
-        populate_JSON(path, site, 'PointsSort', week)
-        populate_JSON(path, site, 'CeilingSort', week)
-        populate_JSON(path, site, 'FloorSort', week)
+        populate_JSON(path, site, 'PointsSort', week, ending)
+        populate_JSON(path, site, 'CeilingSort', week, ending)
+        populate_JSON(path, site, 'FloorSort', week, ending)
 
-        populate_JSON(path, site, 'FFA_PointsSort', week)
-        populate_JSON(path, site, 'FFA_CeilingSort', week)
-        populate_JSON(path, site, 'FFA_FloorSort', week)
+        populate_JSON(path, site, 'FFA_PointsSort', week, ending)
+        populate_JSON(path, site, 'FFA_CeilingSort', week, ending)
+        populate_JSON(path, site, 'FFA_FloorSort', week, ending)
 
 
-def populate_JSON(file_path, site, file_name, week):
+def populate_JSON(file_path, site, file_name, week, ending):
     """
     Get JSON lineup files for the given week
     """
-    file_path = file_path + '/' + site + '/' + file_name + 'Week' + week + '.json'
+    if ending != None:
+        file_path = file_path + '/' + site + '/' + file_name + 'Week' + week + '.json'
+    else:
+        file_path = file_path + '/' + site + '/' + file_name + 'Week' + week + '_Games' + ending + '.json'
+
     with open(file_path) as f:
         LINEUPS[site][file_name] = json.load(f)
 
 
-def write_csvs(csv_base):
+def write_csvs(csv_base, week, ending):
     """
     Create Dataframe and write csv
     """
     for site in SITES:
-        local_path = csv_base + '/' + site + '/lineup_comparison.csv'
+        local_path = csv_base + '/' + site + '/lineup_comparison' + week + ending + '.csv'
         site_lineups = {
             'name': [],
             'roto_points': [],

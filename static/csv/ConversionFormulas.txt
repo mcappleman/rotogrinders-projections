@@ -1,8 +1,8 @@
-=VLOOKUP(A1,'ffa_customrankings2018-3.csv'!$B$2:$V$1438,9,0)
-=VLOOKUP(A1,'ffa_customrankings2018-3.csv'!$B$2:$V$1438,8,0)
-=VLOOKUP(A1,'ffa_customrankings2018-3.csv'!$B$2:$V$1438,7,0)
+=VLOOKUP(A1,'ffa_customrankings2018-4.csv'!$B$2:$V$1438,9,0)
+=VLOOKUP(A1,'ffa_customrankings2018-4.csv'!$B$2:$V$1438,8,0)
+=VLOOKUP(A1,'ffa_customrankings2018-4.csv'!$B$2:$V$1438,7,0)
 
 Defense
-=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,9,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,9,0))
-=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,8,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,8,0))
-=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,7,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-3.csv'!$B$2:$V$1438,7,0))
+=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,9,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,9,0))
+=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,8,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,8,0))
+=IFERROR(VLOOKUP(RIGHT(A1,LEN(A1) - FIND(" ", A1)),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,7,0), VLOOKUP(RIGHT(RIGHT(A1, LEN(A1) - FIND(" ", A1)), LEN(RIGHT(A1, LEN(A1) - FIND(" ", A1))) - FIND(" ", RIGHT(A1, LEN(A1) - FIND(" ", A1)))),'ffa_customrankings2018-4.csv'!$B$2:$V$1438,7,0))
