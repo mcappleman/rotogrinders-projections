@@ -61,7 +61,7 @@ def populate_JSON(file_path, site, file_name, week, ending):
     """
     Get JSON lineup files for the given week
     """
-    if ending != None:
+    if ending == "":
         file_path = file_path + '/' + site + '/' + file_name + 'Week' + week + '.json'
     else:
         file_path = file_path + '/' + site + '/' + file_name + 'Week' + week + '_Games' + ending + '.json'
@@ -99,7 +99,8 @@ def write_csvs(csv_base, week, ending):
                 index += 1
 
         df = pandas.DataFrame(data=site_lineups)
-        df.to_csv(local_path)
+        columns_order = ['name', 'roto_points', 'roto_ceiling', 'roto_floor', 'ffa_points', 'ffa_ceiling', 'ffa_floor']
+        df.to_csv(local_path, index=False, columns=columns_order)
 
 
 if __name__ == '__main__':

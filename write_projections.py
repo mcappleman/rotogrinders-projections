@@ -65,6 +65,7 @@ def main(argv):
 
     sort = [key, 'salary']
 
+    print('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv')
     QBS = pandas.read_csv('./static/csv/' + SITE + '/nfl-qb' + ending + '.csv', header=None, names=names)\
         .sort_values(by=sort, ascending=False)\
         .reset_index()
@@ -119,6 +120,7 @@ def reset():
     lineup_indexes['FLEX'][0] = get_flex_index(lineup_indexes)
 
     return lineup_indexes
+
 
 def add_point_per_dollar(dataframe):
     """
